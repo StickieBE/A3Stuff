@@ -5,6 +5,7 @@
 ##
 ## Developed by: Stickie
 ## Date created: 16/07/2018
+## Date updated: 18/07/2018
 ## Installed by: Stickie
 
 ## Easy addition of model info
@@ -40,58 +41,35 @@
 ## MODEL CONFIG
 ##
 ## @param Config:title=Config|type=enum|enumValues=Stickie,Math,N/A|default=Stickie|desc=Who has written the model configs?
-## @param Status3:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the config been archived or not?
-#if ( $paramStatus3 == "archived" )
-    #set ( $color3 = "Green" )
-#elseif ( $paramStatus3 == "not archived" )
-    #set ( $color3 = "Red" )
-#end
 ##
 ## MODEL ANIMATION
 ##
 ## @param Animation:title=Animation|type=enum|enumValues=Stickie,Math,N/A|default=Stickie|desc=Who has rigged the model animations?
-## @param Status4:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the animation been archived or not?
-#if ( $paramAnimation == "N/A" )
-    #set ( $color4 = "White" )
-    #set ( $paramStatus4 = "N/A" )
-#else
-    #if ( $paramStatus4 == "archived" )
-        #set ( $color4 = "Green" )
-    #else
-        #set ( $color4 = "Red" )
-    #end
-#end
+##
 ####################################################################
 ##                                                                                                                                            #
 ##                                              BEGIN OF DISPLAYED HERE                                                  #
 ##                                                                                                                                            #
 ####################################################################
 <div style="text-align: center;">
-<div class="panelHeader" style="border-width: 1px;border-style: dashed;">
-<b>$paramModelname</b>
-</div>
-<div class="panelContent" style="border-width: 1px;border-style: dashed;">
-Model: $paramModel | Textures: $paramTextures | Config: $paramConfig | Animation: $paramAnimation
-<br>
+<ac:structured-macro ac:name="panel">
+    <ac:parameter ac:name="title">$paramModelname</ac:parameter>
+    <ac:rich-text-body>
+Model: $paramModel | 
 <ac:macro ac:name="status">
     <ac:parameter ac:name="colour">$color1</ac:parameter>
     <ac:parameter ac:name="title">$paramStatus1</ac:parameter>
 </ac:macro>
- | 
+<br>
+Textures: $paramTextures | 
 <ac:macro ac:name="status">
     <ac:parameter ac:name="colour">$color2</ac:parameter>
     <ac:parameter ac:name="title">$paramStatus2</ac:parameter>
 </ac:macro>
- | 
-<ac:macro ac:name="status">
-    <ac:parameter ac:name="colour">$color3</ac:parameter>
-    <ac:parameter ac:name="title">$paramStatus3</ac:parameter>
-</ac:macro>
- | 
-<ac:macro ac:name="status">
-    <ac:parameter ac:name="colour">$color4</ac:parameter>
-    <ac:parameter ac:name="title">$paramStatus4</ac:parameter>
-</ac:macro>
+<br>
+Config: $paramConfig
+<br>
+Animation: $paramAnimation
 <br>
 <ac:macro ac:name="status">
     <ac:parameter ac:name="colour">Green</ac:parameter>
@@ -99,4 +77,5 @@ Model: $paramModel | Textures: $paramTextures | Config: $paramConfig | Animation
     <ac:parameter ac:name="subtle">true</ac:parameter>
 </ac:macro>
 </div>
-</div>
+</ac:rich-text-body>
+</ac:structured-macro>
