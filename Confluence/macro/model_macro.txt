@@ -1,0 +1,102 @@
+## Macro title: arm_model_info
+## Macro has a body: Y or N
+## Body processing: Selected body processing option
+## Output: Selected output option
+##
+## Developed by: Stickie
+## Date created: 16/07/2018
+## Installed by: Stickie
+
+## Easy addition of model info
+##
+## MODEL NAME
+##
+## @param Modelname:title=Modelname|type=string|required=true|desc=The model name (e.g.: ARM_Plank_01)
+##
+## TEXTURE RESOLUTION
+##
+## @param Resolution:title=Resolution|type=enum|enumValues=64,128,256,512,1024,2048,4096|default=2048|desc=What texture resolution size was used?
+##
+## 3D MODEL
+##
+## @param Model:title=Model|type=enum|enumValues=Mr. Spades,Stickie,Math,N/A|default=Stickie|desc=Who has made the 3D model?
+## @param Status1:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the 3D model (.max) been archived or not?
+#if ( $paramStatus1 == "archived" )
+    #set ( $color1 = "Green" )
+#elseif ( $paramStatus1 == "not archived" )
+    #set ( $color1 = "Red" )
+#end
+##
+## MODEL TEXTURE
+##
+## @param Textures:title=Textures|type=enum|enumValues=Mr. Spades,Stickie,Math,N/A|default=Stickie|desc=Who has done the 3D model texturing?
+## @param Status2:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the texture (.spp) been archived or not?
+#if ( $paramStatus2 == "archived" )
+    #set ( $color2 = "Green" )
+#elseif ( $paramStatus2 == "not archived" )
+    #set ( $color2 = "Red" )
+#end
+##
+## MODEL CONFIG
+##
+## @param Config:title=Config|type=enum|enumValues=Stickie,Math,N/A|default=Stickie|desc=Who has written the model configs?
+## @param Status3:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the config been archived or not?
+#if ( $paramStatus3 == "archived" )
+    #set ( $color3 = "Green" )
+#elseif ( $paramStatus3 == "not archived" )
+    #set ( $color3 = "Red" )
+#end
+##
+## MODEL ANIMATION
+##
+## @param Animation:title=Animation|type=enum|enumValues=Stickie,Math,N/A|default=Stickie|desc=Who has rigged the model animations?
+## @param Status4:title=Archival status|type=enum|enumValues=archived,not archived|default=not archived|desc=Has the animation been archived or not?
+#if ( $paramAnimation == "N/A" )
+    #set ( $color4 = "White" )
+    #set ( $paramStatus4 = "N/A" )
+#else
+    #if ( $paramStatus4 == "archived" )
+        #set ( $color4 = "Green" )
+    #else
+        #set ( $color4 = "Red" )
+    #end
+#end
+####################################################################
+##                                                                                                                                            #
+##                                              BEGIN OF DISPLAYED HERE                                                  #
+##                                                                                                                                            #
+####################################################################
+<div style="text-align: center;">
+<div class="panelHeader" style="border-width: 1px;border-style: dashed;">
+<b>$paramModelname</b>
+</div>
+<div class="panelContent" style="border-width: 1px;border-style: dashed;">
+Model: $paramModel | Textures: $paramTextures | Config: $paramConfig | Animation: $paramAnimation
+<br>
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">$color1</ac:parameter>
+    <ac:parameter ac:name="title">$paramStatus1</ac:parameter>
+</ac:macro>
+ | 
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">$color2</ac:parameter>
+    <ac:parameter ac:name="title">$paramStatus2</ac:parameter>
+</ac:macro>
+ | 
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">$color3</ac:parameter>
+    <ac:parameter ac:name="title">$paramStatus3</ac:parameter>
+</ac:macro>
+ | 
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">$color4</ac:parameter>
+    <ac:parameter ac:name="title">$paramStatus4</ac:parameter>
+</ac:macro>
+<br>
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">Green</ac:parameter>
+    <ac:parameter ac:name="title">$paramResolution</ac:parameter>
+    <ac:parameter ac:name="subtle">true</ac:parameter>
+</ac:macro>
+</div>
+</div>
