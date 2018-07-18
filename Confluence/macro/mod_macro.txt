@@ -1,0 +1,63 @@
+## Macro title: arm_mod_info
+## Macro has a body: Y or N
+## Body processing: Selected body processing option
+## Output: Selected output option
+##
+## Developed by: Stickie
+## Date created: 18/07/2018
+## Date updated: N/A
+## Installed by: Stickie
+## Easy addition of mod info
+##
+## MOD NAME
+##
+## @param Modname:title=Mod name|type=string|required=true|desc=The mod name (e.g.: ARM_Chess)
+##
+## MOD VERSION
+##
+## @param Modversion:title=Mod version|type=string|required=true|desc=The mod version (e.g.: 0.0.1)
+##
+## MOD DESCRIPTION
+##
+## @param ModDesc:title=Mod description|type=string|required=true|desc=The mod description (e.g.: A bank addon for Altis Life.)
+##
+## MOD ARCHIVE
+##
+## @param StatusArchive:title=Archival status|type=enum|enumValues=mod archived,mod not archived|default=mod not archived|desc=Has the mod been archived or not?
+#if ( $paramStatusArchive == "mod archived" )
+    #set ( $color3 = "Green" )
+#elseif ( $paramStatusArchive == "mod not archived" )
+    #set ( $color3 = "Red" )
+#end
+##
+## MOD JIRA LINK
+##
+## @param JIRALink:title=JIRA link|type=string|required=true|desc=The link to this mod's JIRA.
+##
+####################################################################
+##                                                                                                                                            #
+##                                              BEGIN OF DISPLAYED HERE                                                  #
+##                                                                                                                                            #
+####################################################################
+<div style="text-align: center;">
+<h1>$paramModname</h1>
+<hr>
+<ac:macro ac:name="info">
+    <ac:parameter ac:name="body">Green</ac:parameter>
+    <ac:parameter ac:name="icon">true</ac:parameter>
+<ac:rich-text-body>
+$paramModDesc
+</ac:macro>
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">Green</ac:parameter>
+    <ac:parameter ac:name="title">$paramModversion</ac:parameter>
+</ac:macro>
+<br>
+<ac:macro ac:name="status">
+    <ac:parameter ac:name="colour">$color3</ac:parameter>
+    <ac:parameter ac:name="title">$paramStatusArchive</ac:parameter>
+</ac:macro>
+<br>
+<a href=$paramJIRALink>JIRA</a>
+<hr>
+</div>
